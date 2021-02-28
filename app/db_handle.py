@@ -4,7 +4,7 @@ import tkinter as tk
 import tkinter.messagebox
 from tkinter import ttk
 
-database = 'app/tb_app.db'
+database = 'tb_app.db'
 
 
 def connect_db():
