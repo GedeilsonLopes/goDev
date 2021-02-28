@@ -321,3 +321,10 @@ def search_btn_press(master, variable, entry):
             tk.messagebox.showerror('Erro', 'Selecione alguma opção de pesquisa')
     else:
         tk.messagebox.showerror('Erro', 'Objeto da pesquisa inválido')
+
+
+def total_students_info(master):
+    total_std = len(search_student())
+    total_info = tk.Label(master, text=f'Total de alunos\n {total_std}',font='Arial 15')
+    total_info.place(x=130,y=530)
+    return total_info

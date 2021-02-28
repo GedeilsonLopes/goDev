@@ -67,4 +67,5 @@ coffee_room_btn = Button(app, text='Adicionar espaço',
                          font='Arial 10', width=15)
 coffee_room_btn.place(x=275, y=470)
 
+tot_std = db_handle.total_students_info(app)
 app.mainloop()
