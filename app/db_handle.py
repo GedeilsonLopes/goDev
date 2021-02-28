@@ -262,7 +262,7 @@ def info_class(classroom):
 
 def search_btn_press(master, variable, entry):
     value = variable.get()
-    entry = entry.get()
+    entry = entry.get().upper()
     if entry != '':
         if value == 'a':
             info = info_student(entry)
