@@ -34,3 +34,8 @@ Desafio de programação GoDev
 ## Requisitos
   
   Essa aplicação necessita do Python versão 3.7 ou superior instalado.
+
+## Nota
+  O projeto já conta com alguns exemplos de alunos inseridos no banco de dados.
+  Para criar um novo evento, o usuário devera excluir manualmente o arquivo "tb_app.db"
+  e emseguida rodar o arquivo "db_pattern.py", para criação de um novo banco de dados.
