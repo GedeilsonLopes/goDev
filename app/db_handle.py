@@ -88,14 +88,19 @@ def insert_coffee_room(name1, name2):
     v_name2 = name2.get()
 
     try:
+        count_query = f'SELECT COUNT(*) FROM sala_cafe'
+        result = dql(count_query)
 
-        if v_name1 and v_name2:
-            vquery = f"INSERT INTO sala_cafe(NOME) VALUES ('{v_name1}')"
-            dml(vquery)
-            vquery = f"INSERT INTO sala_cafe(NOME) VALUES ('{v_name2}')"
-            dml(vquery)
+        if result[0][0] >= 2:
+            tk.messagebox.showerror('Erro','Máximo de 2 espaços para café')
         else:
-            tk.messagebox.showerror('Entrada inválida', 'Digite um valor válido')
+            if v_name1 and v_name2:
+                vquery = f"INSERT INTO sala_cafe(NOME) VALUES ('{v_name1}')"
+                dml(vquery)
+                vquery = f"INSERT INTO sala_cafe(NOME) VALUES ('{v_name2}')"
+                dml(vquery)
+            else:
+                tk.messagebox.showerror('Entrada inválida', 'Digite um valor válido')
 
     except Error as ex:
         tk.messagebox.showerror('Erro', ex)
@@ -111,7 +116,7 @@ def search_student():
     result = dql(vquery)
     student_list = []
     for student in result:
-        student_list.append(f'{student[1].capitalize()} {student[2].capitalize()}')
+        student_list.append(f'{student[1].upper()} {student[2].upper()}')
     return student_list
 
 
@@ -243,6 +248,7 @@ def info_student(student):
 
     return std_info
 
+
 def info_class(classroom):
     cls = classroom_listing()
     info_cls = [classroom]
@@ -252,7 +258,7 @@ def info_class(classroom):
             if classroom == k:
                 info_cls.append(c[k])
     return info_cls
-print(info_class('Diferenciados'))
+
 
 def search_btn_press(master, variable, entry):
     value = variable.get()
@@ -260,7 +266,8 @@ def search_btn_press(master, variable, entry):
     if entry != '':
         if value == 'a':
             info = info_student(entry)
-            trv = ttk.Treeview(master, columns=('Nome', 'Etapa 1', 'Etapa 2', 'Intervalo 1', 'Intervalo 2'), show='headings')
+            trv = ttk.Treeview(master, columns=('Nome', 'Etapa 1', 'Etapa 2', 'Intervalo 1', 'Intervalo 2'),
+                               show='headings')
             trv.column('Nome', width=70)
             trv.column('Etapa 1', width=74)
             trv.column('Etapa 2', width=74)
@@ -279,31 +286,31 @@ def search_btn_press(master, variable, entry):
             info = info_class(entry)
             trv = ttk.Treeview(master, columns=('Nome', 'Etapa 1', 'Etapa 2'),
                                show='headings')
-            trv.column('Nome', width=123)
-            trv.column('Etapa 1', width=123)
-            trv.column('Etapa 2', width=123)
+            trv.column('Nome', width=90)
+            trv.column('Etapa 1', width=135)
+            trv.column('Etapa 2', width=135)
             trv.heading('Nome', text='Nome')
             trv.heading('Etapa 1', text='Etapa 1')
             trv.heading('Etapa 2', text='Etapa 2')
-            trv.place(x=410, y=130, width=370, height=450)
-            trv.insert('','end',value= info[0])
+            trv.place(x=410, y=130, width=360, height=450)
+            trv.insert('', 'end', value=info[0])
             for person in info[1]:
-                trv.insert('','end',value=('',person))
+                trv.insert('', 'end', value=('', person))
             for person in info[2]:
-                trv.insert('', 'end', value=('', '',person))
+                trv.insert('', 'end', value=('', '', person))
             return trv
 
         elif value == 'r':
             info = info_coffee(entry)
             trv = ttk.Treeview(master, columns=('Nome', 'Intervalo 1', 'Intervalo 2'),
                                show='headings')
-            trv.column('Nome', width=123)
-            trv.column('Intervalo 1', width=123)
-            trv.column('Intervalo 2', width=123)
+            trv.column('Nome', width=90)
+            trv.column('Intervalo 1', width=135)
+            trv.column('Intervalo 2', width=135)
             trv.heading('Nome', text='Nome')
             trv.heading('Intervalo 1', text='Café 1')
             trv.heading('Intervalo 2', text='Café 2')
-            trv.place(x=410, y=130, width=370, height=450)
+            trv.place(x=410, y=130, width=360, height=450)
             trv.insert('', 0, value=info[0])
             for person in info[1]:
                 trv.insert('', 'end', value=('', person))
@@ -314,7 +321,3 @@ def search_btn_press(master, variable, entry):
             tk.messagebox.showerror('Erro', 'Selecione alguma opção de pesquisa')
     else:
         tk.messagebox.showerror('Erro', 'Objeto da pesquisa inválido')
-
-
-
-

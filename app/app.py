@@ -1,11 +1,10 @@
 from tkinter import *
 import db_handle
-from tkinter import ttk
 
 db_handle.connect_db()
 
 app = Tk()
-app.title('Viewer')
+app.title('Event Manager')
 
 # Define o tamanho e o posicionamento da tela
 width, height = (800, 600)
@@ -16,7 +15,7 @@ pos_y = int(window_height / 2 - height / 2)
 app.geometry(f'{width}x{height}+{pos_x}+{pos_y}')
 app.resizable(False, False)
 
-title = Label(app, text='Viewer', font='Arial 40').place(width=800, height=100)
+title = Label(app, text='Event Manager', font='Arial 40').place(width=800, height=100)
 
 # caixa de pesquisa
 search_var = StringVar()
