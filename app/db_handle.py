@@ -116,7 +116,7 @@ def search_student():
     result = dql(vquery)
     student_list = []
     for student in result:
-        student_list.append(f'{student[1].upper()} {student[2].upper()}')
+        student_list.append(f'{student[1]} {student[2]}')
     return student_list
 
 
@@ -262,7 +262,7 @@ def info_class(classroom):
 
 def search_btn_press(master, variable, entry):
     value = variable.get()
-    entry = entry.get().upper()
+    entry = entry.get()
     if entry != '':
         if value == 'a':
             info = info_student(entry)
